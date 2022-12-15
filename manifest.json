@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "Send URL to PyLoad",
+    "name": "P2PL - Satcomx00 - Send URL to PyLoad",
     "version": "1.0",
     "description": "Sends the URL of the currently highlighted tab to a PyLoad API server.",
     "permissions": [
