@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+    <head>
+        <title>Send URL to PyLoad Configuration</title>
+        <style>
+            body {
+                background-color: #4d4dff;
+                color: #e6e6ff;
+                font-family: sans-serif;
+            }
+
+            form {
+                max-width: 300px;
+                margin: 20px auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background-color: #9966ff;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            input[type="submit"] {
+                background-color: #e6e6ff;
+                border: 0;
+                padding: 8px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form id="config-form">
+            <label for="url">PyLoad Server URL:</label>
+            <input type="text" id="url" name="url">
+            <br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <br>
+            <label for="package">Package Name:</label>
+            <input type="text" id="package" name="package">
+            <br>
+            <input type="submit" value="Save">
+        </form>
+
+        <script>
+            // Listen for form submission.
+            document.getElementById("config-form").addEventListener("submit", saveSettings);
+
+            function saveSettings(event) {
+                // Prevent the form from submitting.
+                event.preventDefault();
+
+                // Get the values of the form fields.
+                var url = document.getElementById("url").value;
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                var package = document.getElementById("package").value;
+
+                // Save the settings using the chrome.storage API.
+                chrome.storage.sync.set({
+                    pyloadUrl: url,
+                    pyloadUsername: username,
+                    pyloadPassword: password,
+                    pyloadPackage: package
+                });
+
+                // Close the popup.
+                window.close();
+            }
+        </script>
+    </body>
+
+</html>
